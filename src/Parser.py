@@ -18,7 +18,7 @@ The goal of the parser is to transform this information into this 2 sections :
 """
 
 def parse_rates(text) :
-    lines = text.split("\n")
+    lines = text.strip().split("\n")
     first_line = lines[0]
     date = first_line.split("#")[0]
     date = date.strip()
@@ -32,10 +32,3 @@ def parse_rates(text) :
         rates[code] = (unit, rate)
 
     return date, rates
-
-sample = """04 Nov 2026 #213
-Country|Currency|Amount|Code|Rate
-EMU|euro|1|EUR|24.335
-Japan|yen|100|JPY|15.812"""
-
-print(parse_rates(sample))
