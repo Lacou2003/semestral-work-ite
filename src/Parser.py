@@ -19,6 +19,8 @@ The goal of the parser is to transform this information into this 2 sections :
 
 def parse_rates(text) :
     lines = text.strip().split("\n")
+    if len(lines) < 3:
+        raise ValueError("Invalid CNB data : Not enought lines")
     first_line = lines[0]
     date = first_line.split("#")[0]
     date = date.strip()
@@ -26,6 +28,8 @@ def parse_rates(text) :
     rates = {"CZK": (1, 1.0)}
     for line in lines[2:]:
         parts = line.split("|")
+        if len(parts) != 5 :
+            raise ValueError("CNB invalid line :" +line)
         unit = int(parts[2])
         code = parts[3]
         rate = float(parts[4])
