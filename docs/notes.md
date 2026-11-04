@@ -37,3 +37,18 @@ taken into account.
 
 ## Target users
 Students, travelers, anyone who needs a quick conversion with official rates.
+
+## Program flow
+
+```mermaid
+flowchart TD
+    A[Start: amount, FROM, TO] --> B{Amount valid?}
+    B -- no --> E1[Error: invalid amount]
+    B -- yes --> C[Download CNB daily rates]
+    C -- fails --> E2[Error: no connection]
+    C -- ok --> D[Parse rates into dictionary]
+    D --> F{FROM and TO known?}
+    F -- no --> E3[Error: unknown currency]
+    F -- yes --> G[Convert: FROM → CZK → TO]
+    G --> H[Print result + rate date]
+```
