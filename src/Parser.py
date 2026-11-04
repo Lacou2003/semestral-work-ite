@@ -22,4 +22,20 @@ def parse_rates(text) :
     first_line = lines[0]
     date = first_line.split("#")[0]
     date = date.strip()
-    return date
+
+    rates = {"CZK": (1, 1.0)}
+    for line in lines[2:]:
+        parts = line.split("|")
+        unit = int(parts[2])
+        code = parts[3]
+        rate = float(parts[4])
+        rates[code] = (unit, rate)
+
+    return date, rates
+
+sample = """04 Nov 2026 #213
+Country|Currency|Amount|Code|Rate
+EMU|euro|1|EUR|24.335
+Japan|yen|100|JPY|15.812"""
+
+print(parse_rates(sample))
