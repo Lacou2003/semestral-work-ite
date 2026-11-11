@@ -27,9 +27,19 @@ class TestParseRates(unittest.TestCase):
         self.assertEqual(rates["AUD"], (1, 15.134))
         self.assertEqual(rates["JPY"], (100,15.812))
 
-    def teste_czk_add(self):
+    def test_czk_add(self):
         dates, rates = parse_rates(SAMPLE)
         self.assertEqual(rates["CZK"], (1,1.0))
+
+    def test_newline(self):
+        dates, rates = parse_rates(SAMPLE + "\n")
+        self.assertEqual(rates["JPY"], (100,15.812))
+
+
+
+
+
+
 
 
 
