@@ -35,6 +35,17 @@ class TestParseRates(unittest.TestCase):
         dates, rates = parse_rates(SAMPLE + "\n")
         self.assertEqual(rates["JPY"], (100,15.812))
 
+    def test_invalid_line(self):
+        bad_text = "04 Nov 2026 #212\nCountry|Currency|Amount|Code|Rate\nCanadiens de Montreal"
+        #This function says this code needs to return a value error with the bad text
+        with self.assertRaises(ValueError):
+            parse_rates(bad_text)
+
+    def test_short_line(self):
+        with self.assertRaises(ValueError):
+            parse_rates("")
+
+
 
 
 

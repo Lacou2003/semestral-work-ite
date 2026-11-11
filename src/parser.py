@@ -42,3 +42,17 @@ def parse_rates(text) :
         rates[code] = (unit, rate)
 
     return date, rates
+
+exemple = """04 Nov 2026 #212
+Country|Currency|Amount|Code|Rate
+Australia|dollar|1|AUD|15.134
+Brazil|real|1|BRL|3.948
+Canada|dollar|1|CAD|15.479
+China|renminbi|1|CNY|3.233
+Denmark|krone|1|DKK|3.253"""
+
+if __name__ == "__main__":
+    date, rates = parse_rates(exemple)
+    print("Date:", date)
+    for code, (unit, rate) in rates.items():
+        print(code, unit, rate)
