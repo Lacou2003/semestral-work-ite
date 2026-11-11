@@ -1,0 +1,24 @@
+
+"""Tests for the CNB rates parser."""
+
+import unittest
+from src.parser import parse_rates
+
+SAMPLE = """04 Nov 2026 #212
+Country|Currency|Amount|Code|Rate
+Australia|dollar|1|AUD|15.134
+Brazil|real|1|BRL|3.948
+Canada|dollar|1|CAD|15.479
+China|renminbi|1|CNY|3.233
+Denmark|krone|1|DKK|3.253
+Japan|yen|100|JPY|15.812"""
+
+#Class for testing in python
+class TestParseRates(unittest.TestCase):
+    #test name
+    def test_rates(self):
+        #define parser results
+        dates, rates = parse_rates(SAMPLE)
+        #verify if dates really equal the good one
+        self.assertEqual(dates,"04 Nov 2026")
+
