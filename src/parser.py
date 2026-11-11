@@ -16,20 +16,26 @@ The goal of the parser is to transform this information into this 2 sections :
     "JPY": (100, 15.812),
     "USD": (1, 22.101)
 """
-
+#main function
 def parse_rates(text) :
+    #divide in lines and remove spaces
     lines = text.strip().split("\n")
+    #if the line is not on the good format we return an error
     if len(lines) < 3:
         raise ValueError("Invalid CNB data : Not enought lines")
+    #first line is always the date, we remove the # and the spaces
     first_line = lines[0]
     date = first_line.split("#")[0]
     date = date.strip()
-
+    #this is the format we want
     rates = {"CZK": (1, 1.0)}
     for line in lines[2:]:
+        #we splits the lines at the |
         parts = line.split("|")
+        #if its not the good format = error
         if len(parts) != 5 :
             raise ValueError("CNB invalid line :" +line)
+        #we divide the information
         unit = int(parts[2])
         code = parts[3]
         rate = float(parts[4])

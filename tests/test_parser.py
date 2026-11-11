@@ -16,9 +16,17 @@ Japan|yen|100|JPY|15.812"""
 #Class for testing in python
 class TestParseRates(unittest.TestCase):
     #test name
-    def test_rates(self):
+    def test_dates(self):
         #define parser results
         dates, rates = parse_rates(SAMPLE)
         #verify if dates really equal the good one
         self.assertEqual(dates,"04 Nov 2026")
+
+    def test_rates(self):
+        dates, rates = parse_rates(SAMPLE)
+        self.assertEqual(rates["AUD"], (1, 15.134))
+        self.assertEqual(rates["JPY"], (100,15.812))
+
+    def test_czk_add(self):
+
 
