@@ -32,9 +32,7 @@ def convert(amount, from_code, to_code, rates):
     final_amount = round(result, 2)
     return final_amount
 
-if __name__ == "__main__":
-    rates = {"CZK": (1, 1.0), "EUR": (1, 24.335), "JPY": (100, 15.812)}
-    print(convert(5000, "JPY", "CZK", rates))
+
 
 
 
