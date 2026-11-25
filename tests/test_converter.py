@@ -18,3 +18,17 @@ class TestConvert(unittest.TestCase):
     def test_EUR_to_JPY(self):
         result = convert(100, "EUR", "JPY", RATES)
         self.assertEqual(result, 15390.21)
+
+    def test_negative_amount(self):
+        with self.assertRaises(ValueError):
+            convert(-10, "EUR", "CZK", RATES)
+
+    def test_zero_amount(self):
+        with self.assertRaises(ValueError):
+            convert(0, "EUR", "CZK", RATES)
+
+    def test_unknown_currency(self):
+        with self.assertRaises(ValueError):
+            convert(100, "XYZ", "CZK", RATES)
+        with self.assertRaises(ValueError):
+            convert(100, "EUR", "XYZ", RATES)
