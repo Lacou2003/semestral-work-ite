@@ -10,3 +10,7 @@ class TestConvert(unittest.TestCase):
     def test_jpy_to_czk(self):
         result = convert(5000, "JPY", "CZK", RATES)
         self.assertEqual(result, 790.6)
+
+    def test_same_currency(self):
+        result = convert(100, "EUR", "EUR", RATES)
+        self.assertEqual(result, 100)
